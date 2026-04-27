@@ -83,8 +83,9 @@ export default function TodoItem({ todo, onToggle, onDelete, onEdit }: Props) {
               className="w-full bg-transparent border-b border-blue-500 outline-none text-gray-900 dark:text-gray-100"
             />
             <div className="flex items-center gap-2 text-sm">
-              <label className="text-gray-500 dark:text-gray-400 shrink-0">納期限:</label>
+              <label htmlFor={`due-date-${todo.id}`} className="text-gray-500 dark:text-gray-400 shrink-0">納期限:</label>
               <input
+                id={`due-date-${todo.id}`}
                 type="date"
                 value={draftDue}
                 onChange={(e) => setDraftDue(e.target.value)}

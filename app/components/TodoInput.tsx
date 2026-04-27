@@ -40,8 +40,9 @@ export default function TodoInput({ onAdd }: Props) {
         </button>
       </div>
       <div className="flex items-center gap-2 text-sm">
-        <label className="text-gray-500 dark:text-gray-400 shrink-0">納期限:</label>
+        <label htmlFor="input-due-date" className="text-gray-500 dark:text-gray-400 shrink-0">納期限:</label>
         <input
+          id="input-due-date"
           type="date"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
