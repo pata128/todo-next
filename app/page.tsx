@@ -28,19 +28,27 @@ export default function Home() {
 
         <TodoInput onAdd={addTodo} />
 
-        {todos.length > 0 ? (
+        {activeCount + completedCount > 0 && (
           <>
-            <ul className="space-y-2">
-              {todos.map((todo) => (
-                <TodoItem
-                  key={todo.id}
-                  todo={todo}
-                  onToggle={toggleTodo}
-                  onDelete={deleteTodo}
-                  onEdit={editTodo}
-                />
-              ))}
-            </ul>
+            {todos.length > 0 ? (
+              <ul className="space-y-2">
+                {todos.map((todo) => (
+                  <TodoItem
+                    key={todo.id}
+                    todo={todo}
+                    onToggle={toggleTodo}
+                    onDelete={deleteTodo}
+                    onEdit={editTodo}
+                  />
+                ))}
+              </ul>
+            ) : (
+              <p className="text-center text-gray-400 dark:text-gray-500 py-8">
+                {filter === "active"
+                  ? "未完了のタスクはありません。"
+                  : "完了済みのタスクはありません。"}
+              </p>
+            )}
 
             <TodoFilter
               current={filter}
@@ -50,13 +58,11 @@ export default function Home() {
               onClearCompleted={clearCompleted}
             />
           </>
-        ) : (
+        )}
+
+        {activeCount + completedCount === 0 && (
           <p className="text-center text-gray-400 dark:text-gray-500 py-8">
-            {filter === "all"
-              ? "タスクがありません。上から追加してください。"
-              : filter === "active"
-              ? "未完了のタスクはありません。"
-              : "完了済みのタスクはありません。"}
+            タスクがありません。上から追加してください。
           </p>
         )}
       </div>
